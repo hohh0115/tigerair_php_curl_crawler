@@ -45,6 +45,7 @@ $dest_code = 'KIX';
 $journey_begin_date = '2018-05-19';  // 出發日期
 $journey_duration_day = 5;   // 旅遊天數(最後一天為回程日)
 $last_journey_begin_date = '2018-05-20';  // 最後的出發日期
+$below_price = 3000;
 $duration_date_array = array();
 $label_array = ['出發', '返程'];
 $dest_array = array(
@@ -144,7 +145,7 @@ foreach ($duration_date_array as $key => $value) {
 
 				foreach ($value2['fares'] as $key3 => $value3) {
 
-					if ((int)$value3['price'] <= 3000) {
+					if ((int)$value3['price'] <= $below_price) {
 						$alert = '<span style="color:red;font-weight:bold">(低於3000的價格!)</span>';
 					} else {
 						$alert = '';

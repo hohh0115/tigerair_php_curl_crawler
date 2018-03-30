@@ -17,8 +17,6 @@ https://tiger-wkgk.matchbyte.net/wkapi/v1.0/flightsearch?adults=2&children=0&inf
 
 <?php
 
-header('Content-Type: text/html; charset=utf-8');
-
 // 人數都先設為兩人
 // 都是來回機票
 // 出發地皆為 台北
@@ -38,6 +36,9 @@ header('Content-Type: text/html; charset=utf-8');
 // XX1  Tokyo - All Airports
 // KIX  大阪
 // NRT  東京成田
+
+set_time_limit(0); // depends on your need
+header('Content-Type: text/html; charset=utf-8');
 
 // setting
 $dest_code = 'KIX';
@@ -108,7 +109,10 @@ foreach ($duration_date_array as $key => $value) {
 
 	curl_close($ch);
 
-	$search_url = 'https://booking.tigerairtw.com/?dlType=fltsrch&culture=zh-TW&ms=RoundTrip&psgr=2_0_0&depDate='.$value['begin'].'&retDate='.$value['end'].'&origin=TPE&dest='.$dest_code.'&pc=';
+	$search_url = '<a href="https://booking.tigerairtw.com/?dlType=fltsrch&culture=zh-TW&ms=RoundTrip&psgr=2_0_0&depDate='.$value['begin'].'&retDate='.$value['end'].'&origin=TPE&dest='.$dest_code.'&pc=" target="_blank">';
+	$search_url .= 'https://booking.tigerairtw.com/?dlType=fltsrch&culture=zh-TW&ms=RoundTrip&psgr=2_0_0&depDate='.$value['begin'].'&retDate='.$value['end'].'&origin=TPE&dest='.$dest_code.'&pc=';
+	$search_url .= '</a>';
+	
 	$stat = '出發日期：'.$value['begin'].'<br>返程日期：'.$value['end'];
 
 	echo '<h2>'.$stat.'</h2>';
